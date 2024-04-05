@@ -11,11 +11,24 @@ class Solution {
             return 2;
         }
         int num1=1,num2=2;
-        for (int i = 3; i <= n; i++) {
-            sum = num1 + num2;
-            num1 = num2;
-            num2 = sum;
+        // for (int i = 3; i <= n; i++) {
+        //     sum = num1 + num2;
+        //     num1 = num2;
+        //     num2 = sum;
+        // }
+        return help(num1, num2, sum, n, 2);
+
+    }
+
+    int help(int num1, int num2, int sum, int n, int i){
+
+        if(i == n){
+            return sum;
         }
-        return sum;
+
+        sum = num1 + num2;
+        num1 = num2;
+        num2 = sum;
+        return help(num1, num2, sum, n, i+1);
     }
 }
