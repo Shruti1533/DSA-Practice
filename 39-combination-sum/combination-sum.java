@@ -12,16 +12,14 @@ class Solution {
             return;
         }
 
-        if (target < 0 || index >= nums.length) {
+        if (target < 0 ) {
             return;
         }
 
-        // Include current element
-        output.add(nums[index]);
-        solve(nums, index, target - nums[index], output, ans);
-        output.remove(output.size() - 1);
-
-        // Exclude current element
-        solve(nums, index + 1, target, output, ans);
+        for(int i=index;i<nums.length;i++){
+            output.add(nums[i]);
+            solve(nums, i, target - nums[i], output, ans);
+            output.remove(output.size() - 1);
+        }
     }
 }
