@@ -1,33 +1,42 @@
 import java.util.*;
 
 class Solution {
-    private static final String[] mappings = {"", "", "abc", "def", "ghi", "jkl", "mno",          "pqrs", "tuv", "wxyz"};
-
-    private List<String> ans = new ArrayList<>();
+    private static final String[] mappings = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
 
     public List<String> letterCombinations(String digits) {
-        if (digits == null || digits.isEmpty()) {
-            return ans;
+        if(digits.length()==0){
+            List <String> result=new ArrayList<>();
+            return result;
         }
-        helper(digits, new StringBuilder(), 0);
-        return ans;
+        else{
+            return helper(digits);
+        }
+
     }
 
-    private void helper(String digits, StringBuilder result, int index) {
-        if (index == digits.length()) {
-            ans.add(result.toString());
-            return;
+    public List<String> helper(String digits) {
+        //Base case
+        if(digits.length()==0){
+            List <String> result=new ArrayList<>();
+            result.add("");//We do this so it's traversable
+            return result;
         }
 
-        int d = digits.charAt(index) - '0';
-        String letters = mappings[d];
-        char[] lettersArray = letters.toCharArray(); 
-        for (int i = 0; i < lettersArray.length; i++) { 
-            char letter = lettersArray[i]; 
+        //New list
+        List <String> f=new ArrayList<>();
 
-            result.append(letter); 
-            helper(digits, result, index + 1);
-            result.deleteCharAt(result.length() - 1);
+        char fc=digits.charAt(0);
+        int index=fc-'0';
+        String letter=mappings[index];//abc
+
+        //Traverse abc
+        for(int i=0;i<letter.length();i++){
+
+            List<String> small=helper(digits.substring(1));//For 3
+            for(int j=0;j<small.size();j++){
+                f.add(letter.charAt(i)+small.get(j));
+            }
         }
+        return f;
     }
 }
