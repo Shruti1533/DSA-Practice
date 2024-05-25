@@ -1,7 +1,7 @@
 class Solution {
     static boolean b[][];
     public int totalNQueens(int n) {
-        b=new boolean [n][n];
+        b=new boolean [n][n];//false set
         return helper(0,n);
     }
 
@@ -17,7 +17,7 @@ class Solution {
         for(int col=0;col<n;col++){
             if(isSafe(row,col)){
                 b[row][col]=true;//Queen placed
-                //Move to necxt zero and col=0
+                //Move to next zero and col=0
                 count+=helper(row+1,n);
 
                 b[row][col]=false;//Undo operation
