@@ -1,29 +1,16 @@
 class Solution {
-    public int maxSubArray(int[] nums) {
-        int maxSum = Integer.MIN_VALUE;
-        int currentSum = 0;
+    public int maxSubArray(int[] nums){
 
-        // Flag to check if all elements are negative
-        boolean allNegative = true;
-        for (int num : nums) {
-            if (num >= 0) {
-                allNegative = false;
-                break;
+        int m = Integer.MIN_VALUE;  
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            int val = nums[i];
+            sum = sum + val;
+            m = Math.max(m, sum);
+            if (sum < 0) {
+                sum = 0;
             }
-            maxSum = Math.max(maxSum, num);
         }
-
-        // If all elements are negative, return the maximum negative number
-        if (allNegative) {
-            return maxSum;
-        }
-
-        // Otherwise, proceed with Kadane's algorithm to find maximum subarray sum
-        for (int num : nums) {
-            currentSum = Math.max(num, currentSum + num);
-            maxSum = Math.max(maxSum, currentSum);
-        }
-
-        return maxSum;
+        return m;
     }
 }
