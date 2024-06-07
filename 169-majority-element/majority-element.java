@@ -1,25 +1,27 @@
 class Solution {
+    //Moore’s Voting Algorithm:
     public int majorityElement(int[] nums) {
         int n = nums.length;
+        int cnt = 0; // count
+        int el = 0; // Element
 
-        //declaring a map:
-        HashMap<Integer, Integer> map = new HashMap<>();
-
-        //storing the elements with its occurnce:
+        //applying the algorithm:
         for (int i = 0; i < n; i++) {
-            int value = map.getOrDefault(nums[i], 0);
-            map.put(nums[i], value + 1);
+            if (cnt == 0) {
+                cnt = 1;
+                el = nums[i];
+            } else if (el == nums[i]) cnt++;
+            else cnt--;
         }
 
-        //searching for the majority element:
-        //Map.Entry is an interface representing an entry (key-value pair) in a map.
-        //it - loop variable
-        for (Map.Entry<Integer, Integer> it : map.entrySet()) {
-            if (it.getValue() > (n/2)) {
-                return it.getKey();
-            }
+        //checking if the stored element
+        // is the majority element:
+        int cnt1 = 0;
+        for (int i = 0; i < n; i++) {
+            if (nums[i] == el) cnt1++;
         }
 
+        if (cnt1 > (n / 2)) return el;
         return -1;
     }
 }
