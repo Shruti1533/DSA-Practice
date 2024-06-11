@@ -14,8 +14,6 @@ class Solution {
             }*/
         }
 
-        int maxCandies = candyType.length / 2;
-        int uniqueCandies = map.size();
-        return Math.min(uniqueCandies, maxCandies);
+        return Math.min(map.size(), candyType.length / 2);
     }
 }
