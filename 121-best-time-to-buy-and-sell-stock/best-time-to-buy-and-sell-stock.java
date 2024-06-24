@@ -1,20 +1,19 @@
 class Solution {
     public int maxProfit(int[] prices) {
+        int buy = Integer.MAX_VALUE;
+        int n = prices.length;
+        int total_profit = 0;
 
-        int max=0;
-        int curr_profit=0;
-        int buy=prices[0];
-        for(int i=1;i<prices.length;i++){
-            if(prices[i]<buy){
-                buy=prices[i];
-            }
-
-            curr_profit=prices[i]-buy;
-
-            if(curr_profit>max){
-                max=curr_profit;
+        for (int i = 0; i < n; i++) {
+            buy = Math.min(buy, prices[i]);
+            if (buy < prices[i]) {
+                int today_profit = prices[i] - buy;
+                total_profit = Math.max(total_profit, today_profit);
+            } else {
+                buy = prices[i];// price is less, so buy
             }
         }
-        return max;
+
+        return total_profit;
     }
 }
