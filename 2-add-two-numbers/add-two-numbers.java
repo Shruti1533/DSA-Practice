@@ -8,37 +8,45 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
- import java.math.BigInteger;
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        StringBuilder a1 = new StringBuilder();
-        StringBuilder a2 = new StringBuilder();
-
-        while (l1 != null) {
-            a1.insert(0, l1.val);
-            l1 = l1.next;
+        ListNode head = new ListNode(0);
+        ListNode l3 = head;
+ 
+        int carry =0;
+        while(l1 != null || l2 != null){
+ 
+            int sum=0;
+           
+            if(l1 != null){
+ 
+                sum = sum + l1.val;
+                l1 = l1.next;
+ 
+            }
+ 
+            if(l2 != null){
+ 
+                sum = sum + l2.val;
+                l2 = l2.next;
+ 
+            }
+ 
+            sum = sum + carry;
+ 
+            carry = sum / 10;
+            int val = sum % 10;
+ 
+            l3.next = new ListNode(val);
+            l3 = l3.next;
+ 
         }
-        while (l2 != null) {
-            a2.insert(0, l2.val);
-            l2 = l2.next;
+ 
+        if(carry == 1){
+           
+            l3.next = new ListNode(1);
         }
-
-        BigInteger sum = new BigInteger(a1.toString()).add(new BigInteger(a2.toString()));
-
-        ListNode dummyHead = new ListNode(0);
-        ListNode current = dummyHead;
-        
-        if (sum.equals(BigInteger.ZERO)) {
-            return new ListNode(0); // Handle the case when sum is 0
-        }
-
-        while (!sum.equals(BigInteger.ZERO)) {
-            int digit = sum.mod(BigInteger.TEN).intValue();
-            sum = sum.divide(BigInteger.TEN);
-            current.next = new ListNode(digit);
-            current = current.next;
-        }
-
-        return dummyHead.next;
+       
+        return head.next;
     }
 }
