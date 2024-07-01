@@ -17,8 +17,6 @@ class Solution {
         }
 
         ListNode curr=head;
-        ListNode remove=null;
-        ListNode tail=null;
 
         while(curr!=null){
             count++;
