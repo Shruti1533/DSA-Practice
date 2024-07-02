@@ -20,9 +20,7 @@ class Solution {
         }
 
         while(!stack.isEmpty()){
-            char b=stack.peek();
-            str.insert(0,b);
-            stack.pop();
+              str.insert(0, stack.pop());
         }
 
     return str.toString();
