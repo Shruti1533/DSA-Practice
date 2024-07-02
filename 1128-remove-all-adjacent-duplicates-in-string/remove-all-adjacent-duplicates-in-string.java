@@ -3,7 +3,7 @@ class Solution {
         int n=s.length();
         Stack <Character> stack=new Stack<>();
 
-        String str="";
+        StringBuilder str=new StringBuilder();
         if(n==0){
             return "";
         }
@@ -20,10 +20,11 @@ class Solution {
         }
 
         while(!stack.isEmpty()){
-            char b=stack.pop();
-            str=b+str;
+            char b=stack.peek();
+            str.insert(0,b);
+            stack.pop();
         }
 
-    return str;
+    return str.toString();
     }
 }
