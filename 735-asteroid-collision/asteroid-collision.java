@@ -5,7 +5,7 @@ class Solution {
         for(int i=0;i<asteroids.length;i++){
             same=false;
 
-            //Checking collisiom
+            //Checking collision condition i.e., -ve coming and +ve is there already
             while(!stack.isEmpty() && asteroids[i]<0 && stack.peek()>0){
                 
                 //if coming asteroid is greater than previous
@@ -13,19 +13,19 @@ class Solution {
                     stack.pop();
                     continue;
                 }
-                
+
                 //is same size
                 else if(Math.abs(asteroids[i])==stack.peek()){
                     stack.pop();
                 }
 
-                //if in same direction
+                //if in same direction OR -ve coming is less than previous +ve
                 same=true;
                 break;
             }   
 
             if(!same){
-            stack.push(asteroids[i]);
+                stack.push(asteroids[i]);
             }
         }
 
