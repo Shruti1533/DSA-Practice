@@ -1,6 +1,6 @@
 class Solution {
     public String removeStars(String s) {
-        String ans="";
+        StringBuilder ans=new StringBuilder();
         Stack <Character> stack=new Stack<>();
 
         for(int i=0;i<s.length();i++){
@@ -17,9 +17,9 @@ class Solution {
         }
 
         while(!stack.isEmpty()){
-            ans=stack.peek()+ans;
+            ans=ans.insert(0,stack.peek());
             stack.pop();
         }
-        return ans;
+        return ans.toString();
     }
 }
